@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbería El Legado — Guasipati | Sistema de Reservas VIP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    /* =====================================================================
+       EL LEGADO — DARK / INDUSTRIAL LUXURY DESIGN SYSTEM (EMBEDDED CSS)
+       Self-contained styles so layout, cards, inputs, and buttons always
+       render crisply on mobile, tablet, and desktop.
+       ===================================================================== */
+    :root {
+      --bg-canvas: #0b0c0e;
+      --bg-surface: #14161a;
+      --bg-elevated: #1b1e24;
+      --bg-input: #101216;
+      --text-primary: #f5f5f7;
+      --text-secondary: #a1a7b3;
+      --text-muted: #6e7582;
+      --gold: #d4af37;
+      --gold-bright: #e6c55c;
+      --gold-soft: rgba(212, 175, 55, 0.14);
+      --border-subtle: rgba(255, 255, 255, 0.09);
+      --border-gold: rgba(212, 175, 55, 0.45);
+      --emerald: #10b981;
+      --emerald-soft: rgba(16, 185, 129, 0.12);
+      --danger: #ef4444;
+      --danger-soft: rgba(239, 68, 68, 0.14);
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-card: 0 14px 34px rgba(0, 0, 0, 0.45);
+      --shadow-gold: 0 8px 24px rgba(212, 175, 55, 0.22);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Subtle Industrial Grid Backdrop */
+    .industrial-bg {
+      min-height: 100vh;
+      background-color: var(--bg-canvas);
+      background-image:
+        radial-gradient(circle at 12% 0%, rgba(212, 175, 55, 0.11), transparent 42%),
+        radial-gradient(circle at 88% 8%, rgba(212, 175, 55, 0.06), transparent 36%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(11, 12, 14, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 0;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-crest {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #1d2026, #111317);
+      border: 1px solid var(--border-gold);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-gold);
+    }
+
+    .brand-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .brand-name {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .brand-location {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-soft);
+      border: 1px solid var(--border-gold);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .brand-subtitle {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.14s ease, background-color 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
+      text-decoration: none;
+    }
+
+    .btn:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-admin {
+      padding: 10px 14px;
+      font-size: 12px;
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .btn-admin:hover {
+      background: var(--gold-soft);
+      color: var(--gold-bright);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+      color: #0b0c0e;
+      padding: 13px 18px;
+      font-size: 14px;
+      box-shadow: var(--shadow-gold);
+    }
+
+    .btn-gold:hover:not(:disabled) {
+      filter: brightness(1.06);
+    }
+
+    .btn-ghost {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      padding: 10px 14px;
+      font-size: 12px;
+    }
+
+    .btn-ghost:hover:not(:disabled) {
+      border-color: var(--border-gold);
+    }
+
+    .btn-danger-soft {
+      background: var(--danger-soft);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+
+    .btn-danger-soft:hover:not(:disabled) {
+      background: rgba(239, 68, 68, 0.24);
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 24px 0 48px;
+    }
+
+    .hero-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: linear-gradient(125deg, rgba(20, 22, 26, 0.96), rgba(28, 31, 38, 0.92));
+      border: 1px solid var(--border-subtle);
+      border-left: 4px solid var(--gold);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-heading {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .hero-copy {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .schedule-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+    }
+
+    .pill i {
+      color: var(--gold);
+    }
+
+    /* Booking Grid Layout */
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    @media (min-width: 900px) {
+      .booking-layout {
+        grid-template-columns: 1.45fr 0.95fr;
+        align-items: start;
+      }
+    }
+
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .card + .card {
+      margin-top: 20px;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .step-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--gold-soft);
+      border: 1px solid var(--border-gold);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .step-sub {
+      margin: 1px 0 0;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* Barber Stations Grid */
+    .stations-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 560px) {
+      .stations-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .station-card {
+      text-align: left;
+      width: 100%;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, transform 0.14s ease;
+    }
+
+    .station-card:hover {
+      border-color: rgba(212, 175, 55, 0.55);
+      background: #21252d;
+    }
+
+    .station-card.selected {
+      border-color: var(--gold);
+      background: linear-gradient(155deg, rgba(212, 175, 55, 0.16), rgba(27, 30, 36, 0.98));
+      box-shadow: 0 0 0 1px var(--gold);
+    }
+
+    .station-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .station-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .station-status {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--emerald-soft);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .station-name {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .station-spec {
+      margin: 3px 0 0;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* Services List */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 560px) {
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .service-card {
+      text-align: left;
+      width: 100%;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      transition: border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(212, 175, 55, 0.55);
+    }
+
+    .service-card.selected {
+      border-color: var(--gold);
+      background: linear-gradient(155deg, rgba(212, 175, 55, 0.16), rgba(27, 30, 36, 0.98));
+      box-shadow: 0 0 0 1px var(--gold);
+    }
+
+    .service-title {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .service-desc {
+      margin: 4px 0 0;
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .service-price {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    /* Date & Time Slots */
+    .date-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .day-rule-note {
+      font-size: 12px;
+      color: var(--gold-bright);
+      background: var(--gold-soft);
+      border: 1px solid var(--border-gold);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+    }
+
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    @media (min-width: 480px) {
+      .slots-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (min-width: 640px) {
+      .slots-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+
+    .slot-btn {
+      padding: 10px 6px;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      background: var(--bg-elevated);
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      transition: all 0.14s ease;
+    }
+
+    .slot-btn:hover:not(:disabled) {
+      border-color: var(--gold);
+      background: #232730;
+    }
+
+    .slot-btn.selected {
+      background: var(--gold);
+      color: #0b0c0e;
+      border-color: var(--gold-bright);
+    }
+
+    .slot-btn .slot-state {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #6ee7b7;
+    }
+
+    .slot-btn.selected .slot-state {
+      color: #0b0c0e;
+    }
+
+    .slot-btn.occupied {
+      background: var(--danger-soft);
+      border-color: rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+      cursor: not-allowed;
+      opacity: 0.85;
+    }
+
+    .slot-btn.occupied .slot-state {
+      color: #f87171;
+    }
+
+    .slot-btn.passed {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .slot-btn.passed .slot-state {
+      color: var(--text-muted);
+    }
+
+    /* Form Controls */
+    .field-group {
+      margin-bottom: 14px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .input, .select, .textarea {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 11px 12px;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.16s ease;
+    }
+
+    .input:focus, .select:focus, .textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .textarea {
+      min-height: 76px;
+      resize: vertical;
+    }
+
+    /* Summary Box */
+    .summary-box {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .summary-line:last-child {
+      border-bottom: none;
+      padding-top: 10px;
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--gold);
+    }
+
+    .summary-label {
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    .summary-val {
+      font-weight: 600;
+      color: #ffffff;
+      text-align: right;
+    }
+
+    .feedback-msg {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .feedback-error {
+      background: var(--danger-soft);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
+
+    .feedback-success {
+      background: var(--emerald-soft);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #6ee7b7;
+    }
+
+    /* Modal Backdrop & Dialog */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      overflow-y: auto;
+    }
+
+    .modal-dialog {
+      width: 100%;
+      max-width: 820px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75);
+    }
+
+    .modal-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .pin-card {
+      max-width: 380px;
+      margin: 12px auto;
+      text-align: center;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+    }
+
+    .pin-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold-soft);
+      border: 1px solid var(--border-gold);
+      color: var(--gold);
+      font-size: 20px;
+    }
+
+    .admin-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .tab-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tab-btn {
+      padding: 9px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: var(--gold);
+      color: #0b0c0e;
+      border-color: var(--gold-bright);
+    }
+
+    .quick-bar {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+
+    @media (min-width: 680px) {
+      .quick-bar {
+        grid-template-columns: 1fr 1fr 1fr auto;
+        align-items: end;
+      }
+    }
+
+    .agenda-station-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .agenda-station-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .slot-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      margin-bottom: 6px;
+      font-size: 12px;
+    }
+
+    .station-edit-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .station-edit-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (min-width: 640px) {
+      .station-edit-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .pin-form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .pin-form-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="industrial-bg">
+    <!-- =================================================================
+         1. BRAND HEADER
+         ================================================================= -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand-group">
+          <div class="brand-crest" aria-hidden="true">
+            <i class="fa-solid fa-scissors"></i>
+          </div>
+          <div>
+            <div class="brand-title-row">
+              <h1 class="brand-name">BARBERÍA EL LEGADO</h1>
+              <span class="brand-location">Guasipati</span>
+            </div>
+            <p class="brand-subtitle">Estado Bolívar, Venezuela • Estándar VIP &amp; Reserva Directa</p>
+          </div>
+        </div>
+
+        <button type="button" class="btn-admin" onclick="openAdminModal()">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Recepción / Admin</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- =================================================================
+         2. PUBLIC BOOKING SECTION
+         ================================================================= -->
+    <main class="container main-content">
+      <section class="hero-strip" aria-label="Horarios de atención">
+        <div>
+          <h2 class="hero-heading">Reserva tu silla sin filas</h2>
+          <p class="hero-copy">Elige estación, servicio y hora. Tu confirmación viaja directo al WhatsApp del barbero.</p>
+        </div>
+        <div class="schedule-badges">
+          <span class="pill"><i class="fa-regular fa-clock"></i> Lun–Sáb: 8:00 AM – 8:00 PM (últ. cita 7:00 PM)</span>
+          <span class="pill"><i class="fa-solid fa-sun"></i> Dom: 8:00 AM – 3:00 PM (últ. cita 2:00 PM)</span>
+        </div>
+      </section>
+
+      <div class="booking-layout">
+        <!-- Left Column: Barber, Service, Date & Time Slots -->
+        <div>
+          <!-- Step 1: Active Barber Stations -->
+          <section class="card">
+            <div class="step-header">
+              <span class="step-badge">1</span>
+              <div>
+                <h3 class="step-title">Selecciona tu Barbero / Estación</h3>
+                <p class="step-sub">Cada barbero coordina directamente su agenda y WhatsApp.</p>
+              </div>
+            </div>
+            <div id="stationsGrid" class="stations-grid"></div>
+          </section>
+
+          <!-- Step 2: Services Selector -->
+          <section class="card">
+            <div class="step-header">
+              <span class="step-badge">2</span>
+              <div>
+                <h3 class="step-title">Elige el Servicio</h3>
+                <p class="step-sub">Tarifas transparentes en moneda referencial USD.</p>
+              </div>
+            </div>
+            <div id="servicesGrid" class="services-grid"></div>
+          </section>
+
+          <!-- Step 3: Date & Time Slots -->
+          <section class="card">
+            <div class="step-header">
+              <span class="step-badge">3</span>
+              <div>
+                <h3 class="step-title">Fecha y Hora Disponible</h3>
+                <p class="step-sub">Los turnos ocupados o ya pasados de hoy no se pueden reservar.</p>
+              </div>
+            </div>
+
+            <div class="date-row">
+              <div style="flex: 1; min-width: 190px;">
+                <label for="bookingDateInput" class="field-label">Fecha de la cita</label>
+                <input
+                  type="date"
+                  id="bookingDateInput"
+                  class="input"
+                  onchange="handlePublicDateChange(this.value)"
+                />
+              </div>
+              <div id="dayScheduleRule" class="day-rule-note"></div>
+            </div>
+
+            <div id="timeSlotsGrid" class="slots-grid"></div>
+          </section>
+        </div>
+
+        <!-- Right Column: Booking Form & WhatsApp Confirmation -->
+        <aside class="card">
+          <div class="step-header">
+            <span class="step-badge">4</span>
+            <div>
+              <h3 class="step-title">Confirmar Reserva</h3>
+              <p class="step-sub">Bloquea el turno y envía tu mensaje por WhatsApp.</p>
+            </div>
+          </div>
+
+          <div class="summary-box">
+            <div class="summary-line">
+              <span class="summary-label">Estación / Barbero</span>
+              <span id="summaryBarber" class="summary-val">—</span>
+            </div>
+            <div class="summary-line">
+              <span class="summary-label">Servicio</span>
+              <span id="summaryService" class="summary-val">—</span>
+            </div>
+            <div class="summary-line">
+              <span class="summary-label">Fecha y Hora</span>
+              <span id="summaryDateTime" class="summary-val">—</span>
+            </div>
+            <div class="summary-line">
+              <span class="summary-label">Total Referencial</span>
+              <span id="summaryPrice">$0</span>
+            </div>
+          </div>
+
+          <form id="bookingForm" onsubmit="submitPublicBooking(event)">
+            <div class="field-group">
+              <label for="clientNameInput" class="field-label">Tu Nombre y Apellido *</label>
+              <input
+                type="text"
+                id="clientNameInput"
+                class="input"
+                placeholder="Ej. José Rodríguez"
+                required
+              />
+            </div>
+
+            <div class="field-group">
+              <label for="clientPhoneInput" class="field-label">Teléfono / WhatsApp (opcional)</label>
+              <input
+                type="text"
+                id="clientPhoneInput"
+                class="input"
+                placeholder="Ej. 0414-0000000"
+              />
+            </div>
+
+            <div class="field-group">
+              <label for="clientNotesInput" class="field-label">Notas o estilo deseado (opcional)</label>
+              <textarea
+                id="clientNotesInput"
+                class="textarea"
+                placeholder="Ej. Fade bajo, perfilado de barba..."
+              ></textarea>
+            </div>
+
+            <button type="submit" id="confirmWhatsappBtn" class="btn btn-gold" style="width: 100%;">
+              <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i>
+              <span>Reservar y Enviar por WhatsApp</span>
+            </button>
+          </form>
+
+          <div id="bookingFeedback" class="feedback-msg hidden"></div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <!-- =====================================================================
+       3. ADMIN / RECEPTION MODAL
+       ===================================================================== -->
+  <div id="adminModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 id="adminModalTitle" class="modal-title">
+          <i class="fa-solid fa-user-shield" style="color: var(--gold); margin-right: 8px;"></i>
+          Recepción / Administración — El Legado
+        </h2>
+        <button type="button" class="btn-ghost" onclick="closeAdminModal()" aria-label="Cerrar ventana">
+          <i class="fa-solid fa-xmark"></i> Cerrar
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- PIN Gate -->
+        <div id="adminPinGate" class="pin-card">
+          <div class="pin-icon">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <h3 style="margin: 0 0 6px; font-size: 16px; font-weight: 800;">Acceso Restringido</h3>
+          <p style="margin: 0 0 12px; font-size: 12px; color: var(--text-secondary);">
+            Ingresa el PIN de recepción o administración para gestionar la agenda y estaciones.
+          </p>
+
+          <div class="field-group" style="text-align: left;">
+            <label for="adminPinInput" class="field-label">PIN de Acceso</label>
+            <input
+              type="password"
+              id="adminPinInput"
+              class="input"
+              maxlength="8"
+              inputmode="numeric"
+              placeholder="Ingresa tu PIN"
+              style="text-align: center; letter-spacing: 0.35em; font-weight: 700;"
+              onkeydown="if (event.key === 'Enter') unlockAdminPanel()"
+            />
+          </div>
+
+          <div id="adminPinError" class="feedback-msg feedback-error hidden" style="margin-bottom: 12px;">
+            PIN incorrecto. Intenta nuevamente.
+          </div>
+
+          <button type="button" class="btn btn-gold" style="width: 100%;" onclick="unlockAdminPanel()">
+            <i class="fa-solid fa-unlock"></i>
+            <span>Desbloquear Panel</span>
+          </button>
+        </div>
+
+        <!-- Authenticated Admin Panel -->
+        <div id="adminAuthenticatedView" class="hidden">
+          <div class="admin-toolbar">
+            <div class="tab-group" role="tablist">
+              <button
+                type="button"
+                id="tabAgendaBtn"
+                class="tab-btn active"
+                onclick="switchAdminTab('agenda')"
+              >
+                <i class="fa-regular fa-calendar-check"></i> Agenda del Día
+              </button>
+              <button
+                type="button"
+                id="tabStationsBtn"
+                class="tab-btn"
+                onclick="switchAdminTab('stations')"
+              >
+                <i class="fa-solid fa-chair"></i> Estaciones &amp; WhatsApp
+              </button>
+              <button
+                type="button"
+                id="tabSecurityBtn"
+                class="tab-btn"
+                onclick="switchAdminTab('security')"
+              >
+                <i class="fa-solid fa-key"></i> Seguridad / PIN
+              </button>
+            </div>
+
+            <button type="button" class="btn btn-danger-soft" onclick="lockAdminSession()">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>Cerrar Sesión / Bloquear Panel</span>
+            </button>
+          </div>
+
+          <div id="adminNotice" class="feedback-msg feedback-success hidden" style="margin-bottom: 16px;"></div>
+
+          <!-- TAB 1: AGENDA DEL DÍA -->
+          <div id="panelAgenda">
+            <div class="quick-bar">
+              <div>
+                <label for="adminDateInput" class="field-label">Fecha</label>
+                <input
+                  type="date"
+                  id="adminDateInput"
+                  class="input"
+                  onchange="renderAdminAgenda()"
+                />
+              </div>
+
+              <div>
+                <label for="quickStationSelect" class="field-label">Estación / Barbero</label>
+                <select
+                  id="quickStationSelect"
+                  class="select"
+                  onchange="populateQuickSlotSelect()"
+                ></select>
+              </div>
+
+              <div>
+                <label for="quickSlotSelect" class="field-label">Hora Libre</label>
+                <select id="quickSlotSelect" class="select"></select>
+              </div>
+
+              <button type="button" class="btn btn-gold" onclick="blockQuickWalkIn()">
+                <i class="fa-solid fa-user-check"></i>
+                <span>Cliente en local</span>
+              </button>
+            </div>
+
+            <div id="adminAgendaContainer"></div>
+          </div>
+
+          <!-- TAB 2: ESTACIONES & WHATSAPP -->
+          <div id="panelStations" class="hidden">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px;">
+              <div>
+                <h3 style="margin: 0; font-size: 15px; font-weight: 700;">Estaciones y Números de WhatsApp</h3>
+                <p style="margin: 2px 0 0; font-size: 12px; color: var(--text-secondary);">
+                  Los números venezolanos (0414/0424/0412/0416 o +58) se normalizan automáticamente a 58XXXXXXXXXX.
+                </p>
+              </div>
+              <button type="button" class="btn btn-ghost" onclick="addStationRow()">
+                <i class="fa-solid fa-plus"></i>
+                <span>Agregar Estación</span>
+              </button>
+            </div>
+
+            <div id="stationsEditorList"></div>
+
+            <div style="display: flex; justify-content: flex-end; margin-top: 14px;">
+              <button type="button" class="btn btn-gold" onclick="saveStationsConfig()">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>Guardar Estaciones</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB 3: SEGURIDAD / PIN -->
+          <div id="panelSecurity" class="hidden">
+            <div class="station-edit-card">
+              <h3 style="margin: 0 0 4px; font-size: 15px; font-weight: 700;">Cambiar PIN de Acceso</h3>
+              <p style="margin: 0 0 14px; font-size: 12px; color: var(--text-secondary);">
+                Configura un PIN numérico de 4 a 8 dígitos para proteger este panel.
+              </p>
+
+              <div class="pin-form-grid">
+                <div>
+                  <label for="currentPinField" class="field-label">PIN Actual</label>
+                  <input
+                    type="password"
+                    id="currentPinField"
+                    class="input"
+                    maxlength="8"
+                    inputmode="numeric"
+                    placeholder="PIN actual"
+                  />
+                </div>
+                <div>
+                  <label for="newPinField" class="field-label">Nuevo PIN (4–8 dígitos)</label>
+                  <input
+                    type="password"
+                    id="newPinField"
+                    class="input"
+                    maxlength="8"
+                    inputmode="numeric"
+                    placeholder="Ej. 7391"
+                  />
+                </div>
+                <div>
+                  <label for="confirmPinField" class="field-label">Confirmar Nuevo PIN</label>
+                  <input
+                    type="password"
+                    id="confirmPinField"
+                    class="input"
+                    maxlength="8"
+                    inputmode="numeric"
+                    placeholder="Repite el nuevo PIN"
+                  />
+                </div>
+              </div>
+
+              <div id="pinChangeFeedback" class="feedback-msg hidden"></div>
+
+              <div style="display: flex; justify-content: flex-end; margin-top: 14px;">
+                <button type="button" class="btn btn-gold" onclick="handleChangePin()">
+                  <i class="fa-solid fa-key"></i>
+                  <span>Actualizar PIN</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       4. APPLICATION LOGIC (STATE, SCHEDULE RULES, WHATSAPP & ADMIN)
+       ===================================================================== -->
+  <script>
+    const STORAGE_KEYS = {
+      STATIONS: 'el_legado_stations_v1',
+      BOOKINGS: 'el_legado_bookings_v1',
+      ADMIN_PIN: 'el_legado_admin_pin_v1'
+    };
+
+    const DEFAULT_PIN = '1234';
+
+    const SERVICES = [
+      {
+        id: 'corte-clasico',
+        name: 'Corte Clásico/Moderno',
+        price: 10,
+        desc: 'Asesoría de imagen, degradado o tijera y acabado limpio.'
+      },
+      {
+        id: 'corte-barba',
+        name: 'Corte + Barba',
+        price: 12,
+        desc: 'Corte completo más perfilado de barba con navaja y bálsamo.'
+      },
+      {
+        id: 'experiencia-vip',
+        name: 'Experiencia VIP',
+        price: 15,
+        desc: 'Corte y barba premium con toalla caliente, vapor y ritual completo.'
+      }
+    ];
+
+    const DEFAULT_STATIONS = [
+      {
+        id: 'estacion-1',
+        stationLabel: 'Estación 1',
+        name: 'Marco',
+        specialty: 'Fade & Estilo Urbano',
+        whatsapp: '584140000001',
+        active: true
+      },
+      {
+        id: 'estacion-2',
+        stationLabel: 'Estación 2',
+        name: 'Carlos',
+        specialty: 'Corte Clásico & Tijera',
+        whatsapp: '584240000002',
+        active: true
+      },
+      {
+        id: 'estacion-3',
+        stationLabel: 'Estación 3',
+        name: 'Luis',
+        specialty: 'Barba & Diseño',
+        whatsapp: '584120000003',
+        active: true
+      },
+      {
+        id: 'estacion-4',
+        stationLabel: 'Estación 4',
+        name: 'Daniel',
+        specialty: 'Corte Moderno & VIP',
+        whatsapp: '584160000004',
+        active: true
+      },
+      {
+        id: 'estacion-5',
+        stationLabel: 'Estación 5',
+        name: 'Antony - Estación Principal VIP',
+        specialty: 'Atención Principal VIP',
+        whatsapp: '584140000005',
+        active: false
+      }
+    ];
+
+    // App State
+    let stations = [];
+    let bookings = [];
+    let selectedStationId = null;
+    let selectedServiceId = SERVICES[0].id;
+    let selectedDate = '';
+    let selectedSlotLabel = null;
+    let adminUnlocked = false;
+    let activeAdminTab = 'agenda';
+
+    function safeReadStorage(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch (err) {
+        return fallback;
+      }
+    }
+
+    function safeWriteStorage(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch (err) {
+        // Ignore storage quota issues
+      }
+    }
+
+    function getStoredPin() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEYS.ADMIN_PIN);
+        return saved && /^[0-9]{4,8}$/.test(saved) ? saved : DEFAULT_PIN;
+      } catch (err) {
+        return DEFAULT_PIN;
+      }
+    }
+
+    function setStoredPin(pin) {
+      try {
+        localStorage.setItem(STORAGE_KEYS.ADMIN_PIN, pin);
+      } catch (err) {
+        // Ignore storage errors
+      }
+    }
+
+    /**
+     * Normalizes Venezuelan mobile numbers (0414, 0424, 0412, 0416, 0426, +58, etc.)
+     * into international WhatsApp format: 58XXXXXXXXXX.
+     */
+    function normalizeVenezuelanWhatsApp(input) {
+      let digits = String(input || '').replace(/\D/g, '');
+      if (!digits) return '';
+      if (digits.startsWith('0058')) {
+        digits = digits.slice(2);
+      }
+      if (digits.startsWith('04') && digits.length === 11) {
+        digits = '58' + digits.slice(1);
+      } else if (/^(414|424|412|416|426)\d{7}$/.test(digits)) {
+        digits = '58' + digits;
+      }
+      return digits;
+    }
+
+    function formatHourLabel(hour24) {
+      const period = hour24 >= 12 ? 'PM' : 'AM';
+      let hour12 = hour24 % 12;
+      if (hour12 === 0) hour12 = 12;
+      return `${String(hour12).padStart(2, '0')}:00 ${period}`;
+    }
+
+    /**
+     * Generates hourly booking slots based on day of week:
+     * - Sunday (day === 0): 8:00 AM to 2:00 PM last booking slot (closes at 3:00 PM)
+     * - Monday–Saturday (day 1..6): 8:00 AM to 7:00 PM last booking slot (closes at 8:00 PM)
+     */
+    function getSlotsForDateISO(isoDate) {
+      if (!isoDate) return [];
+      const [y, m, d] = isoDate.split('-').map(Number);
+      const dateObj = new Date(y, (m || 1) - 1, d || 1);
+      const dayOfWeek = dateObj.getDay();
+      const lastStartHour = dayOfWeek === 0 ? 14 : 19; // 2:00 PM on Sun, 7:00 PM Mon-Sat
+      const slots = [];
+      for (let h = 8; h <= lastStartHour; h++) {
+        slots.push({
+          hour24: h,
+          label: formatHourLabel(h)
+        });
+      }
+      return slots;
+    }
+
+    function getScheduleSummaryForISO(isoDate) {
+      if (!isoDate) return '';
+      const [y, m, d] = isoDate.split('-').map(Number);
+      const dateObj = new Date(y, (m || 1) - 1, d || 1);
+      if (dateObj.getDay() === 0) {
+        return 'Domingo: 8:00 AM – 3:00 PM (última cita 2:00 PM)';
+      }
+      return 'Lun–Sáb: 8:00 AM – 8:00 PM (última cita 7:00 PM)';
+    }
+
+    function getTodayISO() {
+      const now = new Date();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, '0');
+      const d = String(now.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    function isSlotPastForToday(isoDate, hour24) {
+      const today = getTodayISO();
+      if (isoDate !== today) return false;
+      const now = new Date();
+      return hour24 <= now.getHours();
+    }
+
+    function findBookingForSlot(stationId, isoDate, slotLabel) {
+      return bookings.find(
+        b => b.stationId === stationId && b.date === isoDate && b.slotLabel === slotLabel
+      ) || null;
+    }
+
+    function getActiveStations() {
+      return stations.filter(s => Boolean(s.active));
+    }
+
+    function ensureValidSelectedStation() {
+      const active = getActiveStations();
+      if (!active.some(s => s.id === selectedStationId)) {
+        selectedStationId = active.length > 0 ? active[0].id : null;
+      }
+    }
+
+    function renderStations() {
+      ensureValidSelectedStation();
+      const grid = document.getElementById('stationsGrid');
+      const active = getActiveStations();
+
+      if (active.length === 0) {
+        grid.innerHTML = `<p style="font-size: 13px; color: var(--text-secondary);">No hay estaciones activas en este momento.</p>`;
+        updateBookingSummary();
+        return;
+      }
+
+      grid.innerHTML = active.map(st => {
+        const isSelected = st.id === selectedStationId;
+        return `
+          <button
+            type="button"
+            class="station-card ${isSelected ? 'selected' : ''}"
+            onclick="selectStation('${st.id}')"
+          >
+            <div class="station-top">
+              <span class="station-tag">${escapeHtml(st.stationLabel)}</span>
+              <span class="station-status">Disponible</span>
+            </div>
+            <h4 class="station-name">${escapeHtml(st.name)}</h4>
+            <p class="station-spec">${escapeHtml(st.specialty || 'Servicio de Barbería')}</p>
+          </button>
+        `;
+      }).join('');
+
+      updateBookingSummary();
+    }
+
+    function selectStation(stationId) {
+      selectedStationId = stationId;
+      selectedSlotLabel = null;
+      renderStations();
+      renderTimeSlots();
+    }
+
+    function renderServices() {
+      const grid = document.getElementById('servicesGrid');
+      grid.innerHTML = SERVICES.map(srv => {
+        const isSelected = srv.id === selectedServiceId;
+        return `
+          <button
+            type="button"
+            class="service-card ${isSelected ? 'selected' : ''}"
+            onclick="selectService('${srv.id}')"
+          >
+            <div>
+              <h4 class="service-title">${escapeHtml(srv.name)}</h4>
+              <p class="service-desc">${escapeHtml(srv.desc)}</p>
+            </div>
+            <div class="service-price">$${srv.price}</div>
+          </button>
+        `;
+      }).join('');
+
+      updateBookingSummary();
+    }
+
+    function selectService(serviceId) {
+      selectedServiceId = serviceId;
+      renderServices();
+    }
+
+    function handlePublicDateChange(newDate) {
+      const today = getTodayISO();
+      if (!newDate || newDate < today) {
+        selectedDate = today;
+        document.getElementById('bookingDateInput').value = today;
+      } else {
+        selectedDate = newDate;
+      }
+      selectedSlotLabel = null;
+      renderTimeSlots();
+    }
+
+    function renderTimeSlots() {
+      const ruleEl = document.getElementById('dayScheduleRule');
+      ruleEl.textContent = getScheduleSummaryForISO(selectedDate);
+
+      const grid = document.getElementById('timeSlotsGrid');
+      const slots = getSlotsForDateISO(selectedDate);
+
+      if (!selectedStationId) {
+        grid.innerHTML = `<p style="grid-column: 1 / -1; font-size: 12px; color: var(--text-secondary);">Selecciona una estación para ver horarios.</p>`;
+        updateBookingSummary();
+        return;
+      }
+
+      if (selectedSlotLabel) {
+        const existing = findBookingForSlot(selectedStationId, selectedDate, selectedSlotLabel);
+        const matchingSlot = slots.find(s => s.label === selectedSlotLabel);
+        if (existing || !matchingSlot || isSlotPastForToday(selectedDate, matchingSlot.hour24)) {
+          selectedSlotLabel = null;
+        }
+      }
+
+      grid.innerHTML = slots.map(slot => {
+        const booked = findBookingForSlot(selectedStationId, selectedDate, slot.label);
+        const passed = isSlotPastForToday(selectedDate, slot.hour24);
+        const isPicked = selectedSlotLabel === slot.label;
+
+        if (booked) {
+          return `
+            <button type="button" class="slot-btn occupied" disabled title="Horario ocupado">
+              <span>${slot.label}</span>
+              <span class="slot-state">Ocupado</span>
+            </button>
+          `;
+        }
+
+        if (passed) {
+          return `
+            <button type="button" class="slot-btn passed" disabled title="Hora ya transcurrida">
+              <span>${slot.label}</span>
+              <span class="slot-state">Pasado</span>
+            </button>
+          `;
+        }
+
+        return `
+          <button
+            type="button"
+            class="slot-btn ${isPicked ? 'selected' : ''}"
+            onclick="selectTimeSlot('${slot.label}')"
+          >
+            <span>${slot.label}</span>
+            <span class="slot-state">${isPicked ? 'Elegido' : 'Libre'}</span>
+          </button>
+        `;
+      }).join('');
+
+      updateBookingSummary();
+    }
+
+    function selectTimeSlot(label) {
+      selectedSlotLabel = label;
+      renderTimeSlots();
+    }
+
+    function updateBookingSummary() {
+      const station = getActiveStations().find(s => s.id === selectedStationId);
+      const service = SERVICES.find(s => s.id === selectedServiceId) || SERVICES[0];
+
+      document.getElementById('summaryBarber').textContent =
+        station ? `${station.name} (${station.stationLabel})` : 'Sin estación';
+      document.getElementById('summaryService').textContent = service.name;
+      document.getElementById('summaryDateTime').textContent =
+        selectedDate && selectedSlotLabel ? `${selectedDate} • ${selectedSlotLabel}` : 'Elige fecha y hora';
+      document.getElementById('summaryPrice').textContent = `$${service.price}`;
+    }
+
+    function showBookingFeedback(type, text) {
+      const box = document.getElementById('bookingFeedback');
+      box.className = `feedback-msg ${type === 'error' ? 'feedback-error' : 'feedback-success'}`;
+      box.textContent = text;
+      box.classList.remove('hidden');
+    }
+
+    function submitPublicBooking(event) {
+      event.preventDefault();
+
+      const station = getActiveStations().find(s => s.id === selectedStationId);
+      const service = SERVICES.find(s => s.id === selectedServiceId) || SERVICES[0];
+      const clientName = document.getElementById('clientNameInput').value.trim();
+      const clientPhone = document.getElementById('clientPhoneInput').value.trim();
+      const clientNotes = document.getElementById('clientNotesInput').value.trim();
+
+      if (!station) {
+        showBookingFeedback('error', 'Selecciona una estación/barbero disponible.');
+        return;
+      }
+      if (!selectedDate || !selectedSlotLabel) {
+        showBookingFeedback('error', 'Selecciona una fecha y una hora libre.');
+        return;
+      }
+      if (!clientName) {
+        showBookingFeedback('error', 'Por favor escribe tu nombre y apellido.');
+        return;
+      }
+      if (findBookingForSlot(station.id, selectedDate, selectedSlotLabel)) {
+        renderTimeSlots();
+        showBookingFeedback('error', 'Ese turno ya fue ocupado. Elige otro horario disponible.');
+        return;
+      }
+
+      const newBooking = {
+        id: `bk-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        stationId: station.id,
+        date: selectedDate,
+        slotLabel: selectedSlotLabel,
+        clientName,
+        clientPhone,
+        notes: clientNotes,
+        serviceName: service.name,
+        price: service.price,
+        type: 'online',
+        createdAt: new Date().toISOString()
+      };
+
+      bookings.push(newBooking);
+      safeWriteStorage(STORAGE_KEYS.BOOKINGS, bookings);
+
+      const waDigits = normalizeVenezuelanWhatsApp(station.whatsapp);
+      const messageLines = [
+        `Hola ${station.name}, quiero reservar en *Barbería El Legado* (Guasipati).`,
+        `• *Estación:* ${station.stationLabel}`,
+        `• *Servicio:* ${service.name} ($${service.price})`,
+        `• *Fecha:* ${selectedDate}`,
+        `• *Hora:* ${selectedSlotLabel}`,
+        `• *Cliente:* ${clientName}`
+      ];
+      if (clientPhone) messageLines.push(`• *Teléfono:* ${clientPhone}`);
+      if (clientNotes) messageLines.push(`• *Notas:* ${clientNotes}`);
+
+      const waText = encodeURIComponent(messageLines.join('\n'));
+      const waUrl = waDigits ? `https://wa.me/${waDigits}?text=${waText}` : `https://wa.me/?text=${waText}`;
+
+      selectedSlotLabel = null;
+      document.getElementById('clientNameInput').value = '';
+      document.getElementById('clientPhoneInput').value = '';
+      document.getElementById('clientNotesInput').value = '';
+
+      renderTimeSlots();
+      showBookingFeedback(
+        'success',
+        `Turno guardado como Ocupado para ${clientName}. Abriendo WhatsApp con ${station.name}...`
+      );
+
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+    }
+
+    /* =====================================================================
+       ADMIN / RECEPTION MODAL & CONTROLS
+       ===================================================================== */
+    function openAdminModal() {
+      const modal = document.getElementById('adminModal');
+      modal.classList.remove('hidden');
+
+      if (adminUnlocked) {
+        renderUnlockedAdminState();
+      } else {
+        document.getElementById('adminPinGate').classList.remove('hidden');
+        document.getElementById('adminAuthenticatedView').classList.add('hidden');
+        document.getElementById('adminPinError').classList.add('hidden');
+        const pinInput = document.getElementById('adminPinInput');
+        pinInput.value = '';
+        setTimeout(() => pinInput.focus(), 50);
+      }
+    }
+
+    function closeAdminModal() {
+      document.getElementById('adminModal').classList.add('hidden');
+    }
+
+    function unlockAdminPanel() {
+      const input = document.getElementById('adminPinInput');
+      const errorEl = document.getElementById('adminPinError');
+      if (input.value.trim() === getStoredPin()) {
+        adminUnlocked = true;
+        input.value = '';
+        errorEl.classList.add('hidden');
+        renderUnlockedAdminState();
+      } else {
+        errorEl.classList.remove('hidden');
+      }
+    }
+
+    function lockAdminSession() {
+      adminUnlocked = false;
+      document.getElementById('adminAuthenticatedView').classList.add('hidden');
+      document.getElementById('adminPinGate').classList.remove('hidden');
+      document.getElementById('adminPinInput').value = '';
+      document.getElementById('adminPinError').classList.add('hidden');
+      setTimeout(() => document.getElementById('adminPinInput').focus(), 50);
+    }
+
+    function renderUnlockedAdminState() {
+      document.getElementById('adminPinGate').classList.add('hidden');
+      document.getElementById('adminAuthenticatedView').classList.remove('hidden');
+
+      const adminDateEl = document.getElementById('adminDateInput');
+      if (!adminDateEl.value) {
+        adminDateEl.value = selectedDate || getTodayISO();
+      }
+
+      switchAdminTab(activeAdminTab);
+    }
+
+    function switchAdminTab(tabName) {
+      activeAdminTab = tabName;
+
+      document.getElementById('tabAgendaBtn').classList.toggle('active', tabName === 'agenda');
+      document.getElementById('tabStationsBtn').classList.toggle('active', tabName === 'stations');
+      document.getElementById('tabSecurityBtn').classList.toggle('active', tabName === 'security');
+
+      document.getElementById('panelAgenda').classList.toggle('hidden', tabName !== 'agenda');
+      document.getElementById('panelStations').classList.toggle('hidden', tabName !== 'stations');
+      document.getElementById('panelSecurity').classList.toggle('hidden', tabName !== 'security');
+
+      document.getElementById('adminNotice').classList.add('hidden');
+
+      if (tabName === 'agenda') {
+        populateQuickStationSelect();
+        populateQuickSlotSelect();
+        renderAdminAgenda();
+      } else if (tabName === 'stations') {
+        renderStationsEditor();
+      }
+    }
+
+    function showAdminNotice(msg) {
+      const el = document.getElementById('adminNotice');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+    }
+
+    function populateQuickStationSelect() {
+      const sel = document.getElementById('quickStationSelect');
+      sel.innerHTML = stations.map(st => `
+        <option value="${st.id}">
+          ${escapeHtml(st.name)} (${escapeHtml(st.stationLabel)})${st.active ? '' : ' [Oculta]'}
+        </option>
+      `).join('');
+    }
+
+    function populateQuickSlotSelect() {
+      const dateISO = document.getElementById('adminDateInput').value || getTodayISO();
+      const stationId = document.getElementById('quickStationSelect').value || (stations[0] && stations[0].id);
+      const slotSel = document.getElementById('quickSlotSelect');
+      const slots = getSlotsForDateISO(dateISO);
+
+      const freeSlots = slots.filter(s => !findBookingForSlot(stationId, dateISO, s.label));
+      if (freeSlots.length === 0) {
+        slotSel.innerHTML = `<option value="">Sin horas libres</option>`;
+        return;
+      }
+
+      slotSel.innerHTML = freeSlots.map(s => `<option value="${s.label}">${s.label}</option>`).join('');
+    }
+
+    function blockQuickWalkIn() {
+      const dateISO = document.getElementById('adminDateInput').value || getTodayISO();
+      const stationId = document.getElementById('quickStationSelect').value;
+      const slotLabel = document.getElementById('quickSlotSelect').value;
+
+      if (!stationId || !slotLabel) {
+        showAdminNotice('No hay hora libre seleccionada para bloquear.');
+        return;
+      }
+
+      blockSlotAsWalkIn(stationId, dateISO, slotLabel);
+    }
+
+    function blockSlotAsWalkIn(stationId, dateISO, slotLabel) {
+      if (findBookingForSlot(stationId, dateISO, slotLabel)) return;
+
+      bookings.push({
+        id: `walkin-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        stationId,
+        date: dateISO,
+        slotLabel,
+        clientName: 'Cliente en local',
+        clientPhone: '',
+        notes: 'Atención directa en sitio',
+        serviceName: 'Servicio en local',
+        price: 0,
+        type: 'walkin',
+        createdAt: new Date().toISOString()
+      });
+
+      safeWriteStorage(STORAGE_KEYS.BOOKINGS, bookings);
+      populateQuickSlotSelect();
+      renderAdminAgenda();
+      renderTimeSlots();
+      showAdminNotice(`Turno ${slotLabel} bloqueado como "Cliente en local".`);
+    }
+
+    function releaseBookingOrBlock(bookingId) {
+      bookings = bookings.filter(b => b.id !== bookingId);
+      safeWriteStorage(STORAGE_KEYS.BOOKINGS, bookings);
+      populateQuickSlotSelect();
+      renderAdminAgenda();
+      renderTimeSlots();
+      showAdminNotice('Turno liberado y disponible nuevamente.');
+    }
+
+    function renderAdminAgenda() {
+      populateQuickSlotSelect();
+      const dateISO = document.getElementById('adminDateInput').value || getTodayISO();
+      const slots = getSlotsForDateISO(dateISO);
+      const container = document.getElementById('adminAgendaContainer');
+
+      container.innerHTML = stations.map(st => {
+        const rowsHtml = slots.map(slot => {
+          const entry = findBookingForSlot(st.id, dateISO, slot.label);
+          if (entry) {
+            const badge = entry.type === 'walkin'
+              ? '<span style="color: #fbbf24; font-weight: 700;">Cliente en local</span>'
+              : `<span style="color: #f87171; font-weight: 700;">${escapeHtml(entry.clientName)}</span> <span style="color: var(--text-secondary);">(${escapeHtml(entry.serviceName)})</span>`;
+
+            return `
+              <div class="slot-row">
+                <div>
+                  <strong>${slot.label}</strong> — ${badge}
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-danger-soft"
+                  onclick="releaseBookingOrBlock('${entry.id}')"
+                >
+                  <i class="fa-solid fa-trash-can"></i> Liberar / Cancelar
+                </button>
+              </div>
+            `;
+          }
+
+          return `
+            <div class="slot-row">
+              <div>
+                <strong>${slot.label}</strong> — <span style="color: #6ee7b7; font-weight: 600;">Libre</span>
+              </div>
+              <button
+                type="button"
+                class="btn btn-ghost"
+                onclick="blockSlotAsWalkIn('${st.id}', '${dateISO}', '${slot.label}')"
+              >
+                <i class="fa-solid fa-ban"></i> Bloquear: Cliente en local
+              </button>
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <div class="agenda-station-card">
+            <div class="agenda-station-header">
+              <div>
+                <strong>${escapeHtml(st.name)}</strong>
+                <span style="font-size: 12px; color: var(--gold); margin-left: 6px;">${escapeHtml(st.stationLabel)}</span>
+              </div>
+              <span style="font-size: 11px; color: var(--text-secondary);">
+                WA: ${escapeHtml(st.whatsapp || 'Sin número')} • ${st.active ? 'Visible al público' : 'Oculta'}
+              </span>
+            </div>
+            ${rowsHtml}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderStationsEditor() {
+      const list = document.getElementById('stationsEditorList');
+      list.innerHTML = stations.map((st, idx) => `
+        <div class="station-edit-card">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;">
+            <strong style="font-size: 13px; color: var(--gold);">${escapeHtml(st.stationLabel || `Estación ${idx + 1}`)}</strong>
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; cursor: pointer;">
+                <input
+                  type="checkbox"
+                  id="stationActive_${idx}"
+                  ${st.active ? 'checked' : ''}
+                />
+                <span>Activa / Visible</span>
+              </label>
+              <button
+                type="button"
+                class="btn btn-danger-soft"
+                onclick="deleteStationRow(${idx})"
+                title="Eliminar estación"
+              >
+                <i class="fa-solid fa-trash"></i> Eliminar
+              </button>
+            </div>
+          </div>
+
+          <div class="station-edit-grid">
+            <div>
+              <label class="field-label">Nombre del Barbero / Etiqueta</label>
+              <input type="text" id="stationName_${idx}" class="input" value="${escapeAttr(st.name)}" />
+            </div>
+            <div>
+              <label class="field-label">Especialidad</label>
+              <input type="text" id="stationSpec_${idx}" class="input" value="${escapeAttr(st.specialty || '')}" />
+            </div>
+            <div>
+              <label class="field-label">WhatsApp (0414/0424/0412/0416 o +58)</label>
+              <input type="text" id="stationWa_${idx}" class="input" value="${escapeAttr(st.whatsapp || '')}" />
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addStationRow() {
+      const num = stations.length + 1;
+      stations.push({
+        id: `estacion-${Date.now()}`,
+        stationLabel: `Estación ${num}`,
+        name: `Barbero ${num}`,
+        specialty: 'Corte & Barba',
+        whatsapp: '584140000000',
+        active: true
+      });
+      renderStationsEditor();
+      showAdminNotice('Estación agregada. Pulsa "Guardar Estaciones" para aplicar.');
+    }
+
+    function deleteStationRow(idx) {
+      if (stations.length <= 1) {
+        showAdminNotice('Debe permanecer al menos una estación.');
+        return;
+      }
+      stations.splice(idx, 1);
+      renderStationsEditor();
+      showAdminNotice('Estación removida. Pulsa "Guardar Estaciones" para aplicar.');
+    }
+
+    function saveStationsConfig() {
+      const updated = stations.map((st, idx) => {
+        const nameEl = document.getElementById(`stationName_${idx}`);
+        const specEl = document.getElementById(`stationSpec_${idx}`);
+        const waEl = document.getElementById(`stationWa_${idx}`);
+        const activeEl = document.getElementById(`stationActive_${idx}`);
+
+        const rawName = nameEl ? nameEl.value.trim() : st.name;
+        const rawSpec = specEl ? specEl.value.trim() : st.specialty;
+        const normalizedWa = normalizeVenezuelanWhatsApp(waEl ? waEl.value : st.whatsapp);
+
+        return {
+          ...st,
+          stationLabel: st.stationLabel || `Estación ${idx + 1}`,
+          name: rawName || `Barbero ${idx + 1}`,
+          specialty: rawSpec || 'Corte & Barba',
+          whatsapp: normalizedWa || st.whatsapp || '',
+          active: activeEl ? Boolean(activeEl.checked) : Boolean(st.active)
+        };
+      });
+
+      stations = updated;
+      safeWriteStorage(STORAGE_KEYS.STATIONS, stations);
+
+      renderStations();
+      renderTimeSlots();
+      populateQuickStationSelect();
+      populateQuickSlotSelect();
+      renderAdminAgenda();
+      renderStationsEditor();
+      showAdminNotice('Estaciones y números de WhatsApp guardados correctamente.');
+    }
+
+    function handleChangePin() {
+      const currentPin = document.getElementById('currentPinField').value.trim();
+      const newPin = document.getElementById('newPinField').value.trim();
+      const confirmPin = document.getElementById('confirmPinField').value.trim();
+      const feedback = document.getElementById('pinChangeFeedback');
+
+      feedback.classList.remove('hidden', 'feedback-error', 'feedback-success');
+
+      if (currentPin !== getStoredPin()) {
+        feedback.classList.add('feedback-error');
+        feedback.textContent = 'El PIN actual no es correcto.';
+        return;
+      }
+
+      if (!/^[0-9]{4,8}$/.test(newPin)) {
+        feedback.classList.add('feedback-error');
+        feedback.textContent = 'El nuevo PIN debe contener entre 4 y 8 dígitos numéricos.';
+        return;
+      }
+
+      if (newPin !== confirmPin) {
+        feedback.classList.add('feedback-error');
+        feedback.textContent = 'La confirmación del PIN no coincide.';
+        return;
+      }
+
+      setStoredPin(newPin);
+      document.getElementById('currentPinField').value = '';
+      document.getElementById('newPinField').value = '';
+      document.getElementById('confirmPinField').value = '';
+
+      feedback.classList.add('feedback-success');
+      feedback.textContent = 'PIN actualizado y guardado en este dispositivo.';
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function escapeAttr(str) {
+      return escapeHtml(str).replace(/'/g, '&#39;');
+    }
+
+    function initApp() {
+      const savedStations = safeReadStorage(STORAGE_KEYS.STATIONS, null);
+      stations = Array.isArray(savedStations) && savedStations.length > 0
+        ? savedStations
+        : DEFAULT_STATIONS.map(s => ({ ...s }));
+
+      const savedBookings = safeReadStorage(STORAGE_KEYS.BOOKINGS, []);
+      bookings = Array.isArray(savedBookings) ? savedBookings : [];
+
+      const today = getTodayISO();
+      selectedDate = today;
+      const dateInput = document.getElementById('bookingDateInput');
+      dateInput.min = today;
+      dateInput.value = today;
+
+      ensureValidSelectedStation();
+      renderStations();
+      renderServices();
+      renderTimeSlots();
+    }
+
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>
